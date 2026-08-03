@@ -1,0 +1,262 @@
+/* ===== TAILWIND DIRECTIVES (ALWAYS TOP) ===== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #F0FDFA;
+  --bg-card: #FFFFFF;
+
+  --primary: #0EA5E9;
+  --secondary: #5EEAD4;
+  --accent: #22C55E;
+
+  --text-main: #0F172A;
+  --text-highlight: var(--primary);
+  
+  /* Auto-calculated colors from main variables */
+  --text-secondary: color-mix(in srgb, var(--text-main) 70%, transparent);
+  --text-muted: color-mix(in srgb, var(--text-main) 50%, transparent);
+  --text-subtle: color-mix(in srgb, var(--text-main) 40%, transparent);
+  
+  --border-light: color-mix(in srgb, var(--accent) 20%, white);
+  --border-medium: color-mix(in srgb, var(--accent) 30%, white);
+  
+  --bg-primary-light: color-mix(in srgb, var(--primary) 10%, white);
+  --bg-accent-light: color-mix(in srgb, var(--accent) 10%, white);
+}
+
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  body {
+    @apply font-body antialiased;
+    background: var(--bg-main);
+    color: var(--text-main);
+  }
+  
+  h1 {
+    @apply font-heading font-bold;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-main);
+    letter-spacing: 1px;
+  }
+
+  h2, h3 {
+    @apply font-semibold;
+    font-family: 'Space Mono', monospace;
+  }
+  
+  h4, h5, h6 {
+    @apply font-semibold text-secondary-50;
+  }
+}
+
+
+@layer components {
+  .card {
+    background: var(--bg-card);
+    @apply rounded-xl shadow-sm p-6;
+    border: 1px solid var(--border-light);
+  }
+  
+  .card-hover {
+    @apply hover:shadow-lg hover:scale-105 transition-all duration-300;
+  }
+  
+  .form-input {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-color: var(--border-light);
+    @apply w-full px-4 py-3 border rounded-lg transition-colors;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent);
+  }
+
+  .form-input::placeholder {
+    color: var(--text-subtle);
+    opacity: 1;
+  }
+  
+  .form-label {
+    color: var(--text-main);
+    @apply block text-sm font-medium mb-2;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .hero-pattern {
+    background: linear-gradient(to bottom, var(--bg-main), var(--bg-card));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-pattern::before {
+    content: '';
+    @apply absolute inset-0 opacity-10;
+    background-image: radial-gradient(circle at 20% 50%, color-mix(in srgb, var(--primary) 15%, transparent) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--accent) 15%, transparent) 0%, transparent 50%);
+  }
+
+  .pricing-card-popular {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    @apply transform scale-105;
+  }
+
+  .feature-icon-glow {
+    @apply shadow-lg;
+    box-shadow: 0 10px 40px -10px var(--accent);
+  }
+
+  /* ===== TYPOGRAPHY UTILITY CLASSES ===== */
+  .font-heading {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .font-subheading {
+    font-family: 'Space Mono', monospace;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ===== TEXT COLOR UTILITIES ===== */
+  .text-primary {
+    color: var(--text-main);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .text-subtle {
+    color: var(--text-subtle);
+  }
+
+  .text-highlight {
+    color: var(--text-highlight);
+  }
+
+  .text-brand-primary {
+    color: var(--primary);
+  }
+
+  .text-brand-accent {
+    color: var(--accent);
+  }
+
+  /* ===== BORDER UTILITIES ===== */
+  .border-accent-light {
+    border-color: var(--border-light);
+  }
+
+  .border-accent-medium {
+    border-color: var(--border-medium);
+  }
+
+  .border-brand-primary {
+    border-color: var(--primary);
+  }
+
+  .border-brand-primary-light {
+    border-color: color-mix(in srgb, var(--primary) 20%, white);
+  }
+
+  .border-brand-primary-medium {
+    border-color: color-mix(in srgb, var(--primary) 30%, white);
+  }
+
+  /* ===== BACKGROUND UTILITIES ===== */
+  .bg-card-translucent {
+    background: color-mix(in srgb, var(--bg-card) 60%, transparent);
+  }
+
+  .gradient-bg-subtle {
+    background: linear-gradient(135deg, var(--bg-primary-light) 0%, var(--bg-accent-light) 100%);
+  }
+
+  .bg-main {
+    background: var(--bg-main);
+  }
+
+  .bg-card {
+    background: var(--bg-card);
+  }
+
+  .bg-brand-primary {
+    background: var(--primary);
+  }
+
+  .bg-brand-accent {
+    background: var(--accent);
+  }
+
+  .gradient-bg-accent {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  }
+
+  .bg-brand-primary-10 {
+    background: var(--bg-primary-light);
+  }
+
+  /* ===== BUTTON UTILITIES ===== */
+  .btn-primary {
+    @apply px-8 py-4 rounded-xl font-semibold shadow-lg transform transition-all duration-300;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .btn-primary:hover {
+    @apply scale-105 shadow-xl;
+  }
+
+  .btn-outline {
+    @apply px-8 py-4 rounded-xl font-semibold border-2 transition-all duration-300;
+    color: var(--text-main);
+    border-color: var(--accent);
+    background: var(--bg-card);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .btn-outline:hover {
+    @apply shadow-lg;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--secondary) 60%, white);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--secondary) 80%, white);
+}
