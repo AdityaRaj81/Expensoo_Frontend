@@ -1,5 +1,7 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { logoutUser } from "../../store/authSlice";
 
 import PageHeader from "../../components/common/PageHeader";
 
@@ -9,8 +11,10 @@ import AccountMenu from "../../components/account/AccountMenu";
 const AccountPage = () => {
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
   // Will come from Redux / Backend later
-  const [user] = useState(null);
+  const user = useSelector(state => state.auth.user);
 
   const handleEditProfile = () => {
     navigate("/app/account/edit-profile");
@@ -44,14 +48,9 @@ const AccountPage = () => {
     navigate("/app/account/request-account-deletion");
   };
 
-  const handleLogout = () => {
-    // TODO:
-    // Clear Redux
-    // Clear Local Storage
-    // Call Logout API
-    // Redirect to Login
-
-    navigate("/login");
+  const handleLogout = async () => {
+    await dispatch(logoutUser());
+    navigate("/", { replace: true });
   };
 
   return (
